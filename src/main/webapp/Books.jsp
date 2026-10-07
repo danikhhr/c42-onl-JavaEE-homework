@@ -14,16 +14,16 @@
 <h1 class="container mt-3 text-center">Electronic library</h1>
 <ul>
     <li>
-        <a href="${pageContext.request.contextPath}/load-book?book=cleanCode">download Clean Code.pdf</a>
+        <a href="${pageContext.request.contextPath}/book?book=cleanCode">download Clean Code.pdf</a>
     </li>
     <li>
-        <a href="${pageContext.request.contextPath}/load-book?book=algorithms">download Grokking Algorithms</a>
+        <a href="${pageContext.request.contextPath}/book?book=algorithms">download Grokking Algorithms</a>
     </li>
     <li>
-        <a href="${pageContext.request.contextPath}/load-book?book=java">Download Think Java</a>
+        <a href="${pageContext.request.contextPath}/book?book=java">Download Think Java</a>
     </li>
     <li>
-        <a href="${pageContext.request.contextPath}/load-book?book=python">Download Think Python</a>
+        <a href="${pageContext.request.contextPath}/book?book=python">Download Think Python</a>
     </li>
 </ul>
 

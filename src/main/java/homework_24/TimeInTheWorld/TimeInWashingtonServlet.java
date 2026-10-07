@@ -18,6 +18,6 @@ public class TimeInWashingtonServlet extends HttpServlet {
         ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneId.of("America/New_York"));
         req.setAttribute("zone", "Washington");
         req.setAttribute("time", zonedDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-        req.getRequestDispatcher("/homework24/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 }

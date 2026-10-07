@@ -36,7 +36,7 @@ public class AgeServlet extends HttpServlet {
         if(age >= 18) req.setAttribute("adult", "is adult");
         else req.setAttribute("adult", "is not adult");
 
-        req.getRequestDispatcher("/homework24/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
 }

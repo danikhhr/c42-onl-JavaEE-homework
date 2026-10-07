@@ -5,37 +5,42 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.Map;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
-@WebServlet("load-book")
+@WebServlet("/load-book")
 public class LoadBookServlet extends HttpServlet {
-    private static final Map<String, String> BOOKS = Map.of(
-            "cleanCode", "cleanCode.pdf",
-            "algorithms", "algorithms.pdf",
-            "java", "java.pdf",
-            "python", "python.pdf"
-    );
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String book = req.getParameter("book");
+        resp.sendRedirect("/LoadBook.jsp");
+    }
 
-        if(book.isBlank()) {
-            resp.sendError(400, "Invalid value");
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Part part = req.getPart("book");
+
+        if(part == null || part.getSubmittedFileName() == null || part.getSubmittedFileName().isBlank()) {
+            resp.sendError(400, "Файл не выбран");
             return;
         }
 
-        String fileName = BOOKS.get(book);
-        if (fileName == null) {
-            resp.sendError(
-                    HttpServletResponse.SC_NOT_FOUND,
-                    "Книга не найдена"
-            );
-            return;
+        String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+        String uploadPath = getServletContext().getRealPath("/books");
+
+        File file = new File(uploadPath + File.separator + fileName);
+        try(InputStream inputStream = part.getInputStream()) {
+            Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }
 
-
+        resp.setContentType("text/plain; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().println("Файл успешно загружен: " + fileName);
     }
 }

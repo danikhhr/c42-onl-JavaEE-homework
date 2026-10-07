@@ -18,6 +18,6 @@ public class TimeInBeijingServlet extends HttpServlet {
         ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneId.of("Asia/Shanghai"));
         req.setAttribute("zone", "Beijing");
         req.setAttribute("time", zonedDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-        req.getRequestDispatcher("/homework24/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 }
