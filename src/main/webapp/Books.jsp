@@ -12,20 +12,25 @@
 </head>
 <body>
 <h1 class="container mt-3 text-center">Electronic library</h1>
-<ul>
-    <li>
-        <a href="${pageContext.request.contextPath}/book?book=cleanCode">download Clean Code.pdf</a>
-    </li>
-    <li>
-        <a href="${pageContext.request.contextPath}/book?book=algorithms">download Grokking Algorithms</a>
-    </li>
-    <li>
-        <a href="${pageContext.request.contextPath}/book?book=java">Download Think Java</a>
-    </li>
-    <li>
-        <a href="${pageContext.request.contextPath}/book?book=python">Download Think Python</a>
-    </li>
-</ul>
+<form action="${pageContext.request.contextPath}/book" method="post">
+    <input type="hidden" name="book" value="cleanCode">
+    <button type="submit">download Clean Code.pdf</button>
+</form>
+
+<form action="${pageContext.request.contextPath}/book" method="post">
+    <input type="hidden" name="book" value="algorithms">
+    <button type="submit">download Grokking Algorithms.pdf</button>
+</form>
+
+<form action="${pageContext.request.contextPath}/book" method="post">
+    <input type="hidden" name="book" value="java">
+    <button type="submit">download java.pdf</button>
+</form>
+
+<form action="${pageContext.request.contextPath}/book" method="post">
+    <input type="hidden" name="book" value="python">
+    <button type="submit">download python.pdf</button>
+</form>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

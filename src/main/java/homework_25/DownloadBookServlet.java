@@ -24,7 +24,7 @@ public class DownloadBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String book = req.getParameter("book");
 
-        if (book.isBlank()) {
+        if (book.isBlank() || book == null) {
             resp.sendError(400, "Invalid value");
             return;
         }

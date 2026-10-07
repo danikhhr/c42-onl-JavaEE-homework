@@ -1,6 +1,7 @@
 package homework_25;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 @WebServlet("/load-book")
+@MultipartConfig
 public class LoadBookServlet extends HttpServlet {
 
     @Override
@@ -35,6 +37,8 @@ public class LoadBookServlet extends HttpServlet {
         String uploadPath = getServletContext().getRealPath("/books");
 
         File file = new File(uploadPath + File.separator + fileName);
+        file.mkdirs();
+
         try(InputStream inputStream = part.getInputStream()) {
             Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }
