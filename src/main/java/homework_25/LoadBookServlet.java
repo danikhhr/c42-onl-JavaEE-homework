@@ -21,7 +21,7 @@ public class LoadBookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/LoadBook.jsp");
+        resp.sendRedirect("/homework25/LoadBook.jsp");
     }
 
     @Override

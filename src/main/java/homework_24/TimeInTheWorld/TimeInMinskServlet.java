@@ -18,6 +18,6 @@ public class TimeInMinskServlet extends HttpServlet {
         ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneId.of("Europe/Minsk"));
         req.setAttribute("zone", "Minsk");
         req.setAttribute("time", zonedDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/homework24/index.jsp").forward(req, resp);
     }
 }

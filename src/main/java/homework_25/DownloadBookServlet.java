@@ -50,6 +50,6 @@ public class DownloadBookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/Books.jsp");
+        resp.sendRedirect("/homework25/Books.jsp");
     }
 }
