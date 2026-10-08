@@ -24,7 +24,7 @@ public class DownloadBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String book = req.getParameter("book");
 
-        if (book.isBlank() || book == null) {
+        if (book == null || book.isBlank()) {
             resp.sendError(400, "Invalid value");
             return;
         }
@@ -40,16 +40,12 @@ public class DownloadBookServlet extends HttpServlet {
 
         try(OutputStream outputStream = resp.getOutputStream();
             InputStream inputStream = getServletContext().getResourceAsStream("/book/" + fileName)) {
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while((bytesRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
-            }
+            inputStream.transferTo(outputStream);
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/homework25/Books.jsp");
+        resp.sendRedirect(req.getContextPath() + "/homework25/Books.jsp");
     }
 }

@@ -21,7 +21,7 @@ public class LoadBookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/homework25/LoadBook.jsp");
+        resp.sendRedirect(req.getContextPath() + "/homework25/LoadBook.jsp");
     }
 
     @Override
@@ -36,8 +36,9 @@ public class LoadBookServlet extends HttpServlet {
         String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
         String uploadPath = getServletContext().getRealPath("/books");
 
-        File file = new File(uploadPath + File.separator + fileName);
-        file.mkdirs();
+        File directory = new File(uploadPath);
+        Files.createDirectories(directory.toPath());
+        File file = new File(directory, fileName);
 
         try(InputStream inputStream = part.getInputStream()) {
             Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
